@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ClassificationCreateDlg" widgetVar="ClassificationCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateClassificationTitle}">
+            <h:form id="ClassificationCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{classificationController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateClassificationLabel_libelle}" for="libelle" />
+                        <p:inputText id="libelle" value="#{classificationController.selected.libelle}" title="#{bundle.CreateClassificationTitle_libelle}" />
+                        <p:outputLabel value="#{bundle.CreateClassificationLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{classificationController.selected.id}" title="#{bundle.CreateClassificationTitle_id}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{classificationController.create}" value="#{bundle.Save}" update="display,:ClassificationListForm:datalist,:growl" oncomplete="handleSubmit(args,'ClassificationCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ClassificationCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
